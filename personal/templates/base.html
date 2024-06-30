@@ -52,16 +52,16 @@
                             <li><a href="price">Pricing</a></li>
                             <li class="menu-has-children"><a href>Blog</a>
                                 <ul>
-                                    <li><a href="blog-home.html">Blog
+                                    <li><a href="blog-home">Blog
                                             Home</a></li>
-                                    <li><a href="blog-single.html">Blog
+                                    <li><a href="blog-single">Blog
                                             Single</a></li>
                                 </ul>
                             </li>
                             <li class="menu-has-children"><a href>Pages</a>
                                 <ul>
                                     <li><a
-                                            href="elements.html">Elements</a></li>
+                                            href="elements">Elements</a></li>
                                     <li class="menu-has-children"><a href>Level
                                             2 </a>
                                         <ul>
@@ -111,12 +111,11 @@
                             <h4>Newsletter</h4>
                             <p>Stay updated with our latest trends</p>
                             <div class id="mc_embed_signup">
-                                <form target="_blank"
-                                    action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                    method="get">
+                                <form method="POST">
+                                    {% csrf_token %}
                                     <div class="input-group">
                                         <input type="text" class="form-control"
-                                            name="EMAIL"
+                                            name="email"
                                             placeholder="Enter Email Address"
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Enter Email Address '"
@@ -132,6 +131,8 @@
                                         <div class="info"></div>
                                     </div>
                                 </form>
+                                <br>
+                                <p style="color: green">{{msg}}</p>
                             </div>
                         </div>
                     </div>

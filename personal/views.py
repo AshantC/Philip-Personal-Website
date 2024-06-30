@@ -1,15 +1,26 @@
 from django.shortcuts import render
-from personal.models import Contact, Review
+from personal.models import Contact, Review, Newsletter
 
 # Create your views here.
 
 def home(request):
     views = {}
     views["reviews"] = Review.objects.all()
+    
+    if request.method == "POST":
+        email = request.POST["email"]
+        data = Newsletter.objects.create(
+            email = email
+        )
+        data.save()
+        message = {"msg": "You will be notified for any updates."}
+        return render(request, "index.html", message)
     return render(request, "index.html", views)
 
 def about(request):
-    return render(request, "about.html")
+    views = {}
+    views["reviews"] = Review.objects.all()
+    return render(request, "about.html", views)
 
 def contact(request):
     if request.method == "POST":
@@ -39,3 +50,13 @@ def services(request):
 
 def price(request):
     return render(request, "price.html")
+
+def elements(request):
+    return render(request, "elements.html")
+
+def blogHome(request):
+    return render(request, "blog-home.html")
+
+def blogSingle(request):
+    return render(request, "blog-single.html")
+
